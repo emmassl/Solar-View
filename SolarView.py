@@ -13,7 +13,7 @@ def center_crop(img, percent):
 
 
 if __name__ == "__main__":
-    dataset = "images"
+    dataset = "buildings"
     for filename in os.listdir(dataset):
         if filename.lower().endswith((".jpg", ".jpeg", ".png")):
             path = os.path.join(dataset, filename)

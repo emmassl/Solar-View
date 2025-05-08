@@ -86,7 +86,7 @@ def detect_solar_panels(image_path, show=True):
 
 
 if __name__ == "__main__":
-    image_folder = "images2"
+    image_folder = "buildings"
     for filename in os.listdir(image_folder):
         if filename.lower().endswith((".jpg", ".jpeg", ".png")):
             path = os.path.join(image_folder, filename)
