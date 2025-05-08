@@ -4,13 +4,6 @@ import os
 import matplotlib.pyplot as plt
 from skimage.feature import local_binary_pattern
 
-'''Actionables: 
-    1. make more thorough
-    2. Implement with image display and information right below image
-    3. Currently runs off of cropped image of roof, need to detect roof, panels (y/n), then material
-    4. Therefore fix issue of detection reliance on image quality and crop'''
-
-
 
 def id_material_lbp(gray):
     ''' Detecting Material Based on Local Binary Pattern (LBP) '''
@@ -73,7 +66,7 @@ def id_material_sift(gray, sift):
     if kp_density > 0.002 and x_spread > 30 and y_spread > 30:
         material = "tile (regular pattern with high texture)"
     elif kp_density < 0.0005:
-        material = "metal (smooth)"
+        material = "metal or concrete (smooth)"
     elif 0.0005 <= kp_density <= 0.002:
         material = "asphalt or wood shingles (medium, fine grain)"
     else:
@@ -99,6 +92,7 @@ if __name__ == "__main__":
             img_color = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             # convert to gray for lbp and sift
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            # gray = cv2.equalizeHist(gray)  # Improve contrast
 
             materiallbp, lbp_img = id_material_lbp(gray) #img is for display
             materialsift, sift_img = id_material_sift(gray, sift)
